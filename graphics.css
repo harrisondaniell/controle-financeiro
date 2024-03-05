@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.chart {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  padding: 2rem;
+  border: 1px solid #f49131;
+  border-radius: 1rem;
+  /* background: #1e0c42; */
+  /* background: #200e38; */
+  background: #031634;
+  /* background: #251c35; */
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+}
