@@ -67,6 +67,11 @@ class Account {
   }
 }
 
+function formatDate(dateInput, element) {
+  const [ano, mes, dia] = dateInput.split('-');
+  element.date = `${dia}/${mes}/${ano}`;
+}
+
 function saveLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value))
 }
@@ -256,6 +261,8 @@ function updateData() {
       arrayRevenue[i].description = description.value;
       arrayRevenue[i].value = value.value;
       arrayRevenue[i].category = category.value;
+      arrayRevenue[i].dateInput = date.value;
+      formatDate(arrayRevenue[i].dateInput, arrayRevenue[i]);
       inputs.forEach(item => item.value = '')
       saveLocalStorage('arrayRevenue', arrayRevenue)
       checkAccount(arrayRevenue[i].category, arrayRevenue[i].value, subt)
