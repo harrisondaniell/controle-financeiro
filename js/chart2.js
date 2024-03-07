@@ -4,16 +4,18 @@ const ctx1 = document.getElementById('doughnut-chart');
 let transitor;
 let labelsX = []
 let valores = [25, 25, 25, 25]
-// function att() {
-//   if (JSON.parse(localStorage.getItem(('allAccounts')))) {
-//     transitor = JSON.parse(localStorage.getItem(('allAccounts')))
-//     labelsX = transitor.allCategorys
-//   }
-//   valores = JSON.parse(localStorage.getItem(('values')))
-// }
-// att()
+function att() {
+  if (JSON.parse(localStorage.getItem(('allAccounts')))) {
+    transitor = JSON.parse(localStorage.getItem(('allAccounts')))
+    labelsX = transitor.allCategorys
+    console.log(labelsX)
+    console.log('labelsX')
+  }
+  valores = JSON.parse(localStorage.getItem(('values')))
+}
+att()
 
-const buttons = document.querySelectorAll('.buttons');
+const buttons = document.querySelectorAll('button');
 
 
 let rgba = [

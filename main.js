@@ -5,9 +5,9 @@ const modal = document.querySelector('.modal')
 const tbody = document.querySelector('tbody');
 const inputs = document.querySelectorAll('.inputs');
 const [description, value, category, date] = inputs;
-let arrayRevenue = [];
 let arrayExpenditure = [];
-let arrayCategorys = [];
+let arrayRevenue = [];
+// let arrayCategorys = [];
 let values = []
 let allAccounts = {
   categorias: [],
@@ -17,14 +17,14 @@ let edit = document.querySelectorAll('td span.edit');
 let deleteSpan = document.querySelectorAll('td span.delete');
 let id = 1;
 let targetId;
-let indexTargetElement;
+let trTarget;
 let targetPosition;
 const getLocalStorage = key => JSON.parse(localStorage.getItem((key)));
 
 const verificLocalStorage = () => {
-  let content = JSON.parse(localStorage.getItem('arrayRevenue'))
+  let content = JSON.parse(localStorage.getItem('arrayExpenditure'))
   if (content) {
-    arrayRevenue = content.slice();
+    arrayExpenditure = content.slice();
     id = +(localStorage.getItem('id'))
     values = getLocalStorage('values')
     allAccounts = getLocalStorage('allAccounts')
@@ -56,7 +56,7 @@ class Revenue extends Transactions {
 
 class Expenditure extends Transactions {
   constructor(description, value, category, date, dateInput, id) {
-    super(description, value, category, date, id);
+    super(description, value, category, dateInput, id);
   }
 }
 
@@ -84,15 +84,14 @@ function addItem() {
     }
   }
   inputs.forEach(item => item.value.trim())
-  let newCategory = category.value.toLowerCase();
-  newCategory = newCategory.replace(newCategory[0], newCategory[0].toUpperCase());
-  let newItem = new Revenue(description.value, +value.value, newCategory, date.value, date.value, id)
+  let newCategory = category.value.charAt(0).toUpperCase() + category.value.slice(1).toLowerCase();
+  let newItem = new Expenditure(description.value, +value.value, newCategory, date.value, date.value, id)
   newItem.formatDate()
-  arrayRevenue.push(newItem)
+  arrayExpenditure.push(newItem)
   insertRow(newItem)
   checkAccount(newItem.category, newItem.value)
   id++
-  saveLocalStorage('arrayRevenue', arrayRevenue)
+  saveLocalStorage('arrayExpenditure', arrayExpenditure)
   saveLocalStorage('id', id)
   inputs.forEach(item => item.value = '');
   return newItem
@@ -137,13 +136,13 @@ del.addEventListener('click', clear)
 
 function clear() {
   localStorage.clear();
-  arrayRevenue = [];
+  arrayExpenditure = [];
   id = 1
   tbody.querySelectorAll('tr').forEach(item => item.remove())
 }
 
 function createTable() {
-  arrayRevenue.forEach(item => {
+  arrayExpenditure.forEach(item => {
     const { description, value, category, dateInput, date, id } = item;
     let props = [description, value, category, date]
     createTr(props, id)
@@ -157,6 +156,7 @@ function insertRow(obj) {
   let props = [description, value, category, date]
   createTr(props, id)
 }
+
 function createActions() {
   let td = document.createElement('td');
   let span = document.createElement('span')
@@ -183,70 +183,29 @@ function createTr(props, id) {
   tbody.appendChild(tr)
   edit = tbody.querySelectorAll('td span.edit')
   deleteSpan = tbody.querySelectorAll('td span.delete')
-  edit.forEach(item => item.addEventListener('click', upadteTd))
+  edit.forEach(item => item.addEventListener('click', updateTd))
   deleteSpan.forEach(item => item.addEventListener('click', deleteTd))
 }
 
-function checkAccount(category, value, subt = 0) {
+function checkAccount(category, value) {
   if (allAccounts.allCategorys.includes(category.toLowerCase())) {
-    let position = allAccounts.allCategorys.indexOf(category.toLowerCase())
-    allAccounts.categorias[position].value += value - subt;
-    saveLocalStorage('allAccounts', allAccounts)
-    values = allAccounts.categorias.map(item => item.value).slice()
-    saveLocalStorage('values', values)
+    DeleteOrSubt(category, value)
   } else {
     addAccounts(category, value)
   }
 }
 
 function addAccounts(category, value) {
-  let newCategory = category.toLowerCase()
-  newCategory = newCategory.replace(newCategory[0], newCategory[0].toUpperCase())
+  let newCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
   let newItem = new Account(newCategory, value)
   allAccounts.categorias.push(newItem)
   allAccounts.allCategorys.push(category.toLowerCase())
-  saveLocalStorage('allAccounts', allAccounts)
   values.push(newItem.value)
+  saveLocalStorage('allAccounts', allAccounts)
   saveLocalStorage('values', values)
 }
 
-function upadteTd(event) {
-  let id = +this.parentNode.parentNode.getAttribute('data-id')
-  let tam = arrayRevenue.length
-  for (let i = 0; i < tam; i++) {
-    if (arrayRevenue[i].id === id) {
-      description.value = arrayRevenue[i].description;
-      value.value = arrayRevenue[i].value
-      category.value = arrayRevenue[i].category
-      date.value = arrayRevenue[i].dateInput
-      openModal(event, 'update')
-      targetId = arrayRevenue[i].id
-      break
-    }
-  }
-}
-
-function getValuesTd(event, i, className) {
-  description.value = arrayRevenue[i].description;
-  value.value = arrayRevenue[i].value
-  category.value = arrayRevenue[i].category
-  date.value = arrayRevenue[i].dateInput
-  openModal(event, className)
-  targetId = arrayRevenue[i].id
-}
-
-
-function deleteTd(event) {
-  event.preventDefault()
-  let id = +this.parentNode.parentNode.getAttribute('data-id')
-  indexTargetElement = this.parentNode.parentNode
-  targetPosition = encontrarPosicao(arrayRevenue, id)
-  inputs.forEach(item => item.disabled = true)
-  getValuesTd(event, targetPosition, 'delete')
-}
-
-
-function encontrarPosicao(array, id) {
+function findPosition(array, id) {
   for (let i = 0; i < array.length; i++) {
     if (array[i].id === id)
       return i;
@@ -254,33 +213,82 @@ function encontrarPosicao(array, id) {
   return -1;
 }
 
+
+function getValuesTd(event, i, className) {
+  description.value = arrayExpenditure[i].description;
+  value.value = arrayExpenditure[i].value
+  category.value = arrayExpenditure[i].category
+  date.value = arrayExpenditure[i].dateInput
+  openModal(event, className)
+  targetId = arrayExpenditure[i].id
+}
+
+function updateTd(event) {
+  let id = +this.parentNode.parentNode.getAttribute('data-id')
+  let i = findPosition(arrayExpenditure, id);
+  targetPosition = i;
+  getValuesTd(event, i, 'update')
+}
+
 function updateData() {
-  for (let i = 0; i < arrayRevenue.length; i++) {
-    if (arrayRevenue[i].id == targetId) {
-      let subt = arrayRevenue[i].value
-      arrayRevenue[i].description = description.value;
-      arrayRevenue[i].value = value.value;
-      arrayRevenue[i].category = category.value;
-      arrayRevenue[i].dateInput = date.value;
-      formatDate(arrayRevenue[i].dateInput, arrayRevenue[i]);
-      inputs.forEach(item => item.value = '')
-      saveLocalStorage('arrayRevenue', arrayRevenue)
-      checkAccount(arrayRevenue[i].category, arrayRevenue[i].value, subt)
-      let tr = tbody.querySelectorAll('tr')
-      tr.forEach(item => item.remove())
-      createTable()
-      break
-    }
-  }
+  let i = targetPosition
+  let categoryA = arrayExpenditure[i].category
+  let valueA = arrayExpenditure[i].value
+  arrayExpenditure[i].description = description.value;
+  arrayExpenditure[i].value = value.value;
+  arrayExpenditure[i].category = category.value;
+  arrayExpenditure[i].dateInput = date.value;
+  formatDate(arrayExpenditure[i].dateInput, arrayExpenditure[i]);
+  inputs.forEach(item => item.value = '')
+  saveLocalStorage('arrayExpenditure', arrayExpenditure)
+  checkAccount(categoryA, valueA)
+  checkAccount(arrayExpenditure[i].category, arrayExpenditure[i].value)
+  let tr = tbody.querySelectorAll('tr')
+  tr.forEach(item => item.remove())
+  createTable()
 }
 
 btnUpdate.addEventListener('click', () => updateData())
 
+function deleteTd(event) {
+  event.preventDefault()
+  let id = +this.parentNode.parentNode.getAttribute('data-id')
+  trTarget = this.parentNode.parentNode
+  targetPosition = findPosition(arrayExpenditure, id)
+  inputs.forEach(item => item.disabled = true)
+  getValuesTd(event, targetPosition, 'delete')
+}
+
 btnDelete.addEventListener('click', () => {
-  indexTargetElement.remove()
-  arrayRevenue.splice(targetPosition, 1)
-  saveLocalStorage('arrayRevenue', arrayRevenue)
+  trTarget.remove()
+  let c = arrayExpenditure[targetPosition].category
+  let v = arrayExpenditure[targetPosition].value
+  DeleteOrSubt(c, v)
+  arrayExpenditure.splice(targetPosition, 1)
+  saveLocalStorage('arrayExpenditure', arrayExpenditure)
 })
+
+function DeleteOrSubt(category, value) {
+  let position = allAccounts.allCategorys.indexOf(category.toLowerCase())
+  let verific = allAccounts.categorias[position].value - value;
+  if (verific <= 0) {
+    allAccounts.categorias.splice(position, 1)
+    allAccounts.allCategorys.splice(position, 1)
+    values.splice(position, 1)
+  } else {
+    allAccounts.categorias[position].value -= value
+    values[position] -= value
+  }
+  saveLocalStorage('values', values)
+  saveLocalStorage('allAccounts', allAccounts)
+}
+
+console.log(allAccounts.allCategorys)
+console.log(allAccounts.allCategorys.indexOf('saúde'.toLowerCase()))
+
+
+
+
 
 
 
