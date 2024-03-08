@@ -42,6 +42,11 @@
   animation: modal .3s forwards;
 }
 
+.alert {
+  margin-top: 10px;
+  color: red;
+}
+
 .modal.update #btnUpdate {
   display: flex;
   background-color: #031634;
@@ -104,4 +109,29 @@
 .modal #btnUpdate,
 .modal #btnDelete {
   display: none;
+}
+
+#typeInput {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#typeInput li {
+  list-style: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px 25px;
+  cursor: pointer;
+}
+
+#typeInput .gain.selected {
+  background-color: #63e6be;
+}
+
+#typeInput .expenditure.selected {
+  background-color: red;
+  color: #fff;
 }

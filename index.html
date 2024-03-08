@@ -9,7 +9,39 @@
 </head>
 
 <body>
-  <div class="container">
+  <main>
+    <section class="section-cards">
+
+      <div class="card">
+        <div class="content-card">
+          <p>Ganhos</p>
+          <h2 class="card-value" id="revenue">R$ 0,00</h2>
+        </div>
+        <div class="icon">
+          <span><i class="fa-solid fa-arrow-up fa-2xl"></i></span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content-card">
+          <p>Despesas</p>
+          <h2 class="card-value" id="expenditure">R$ 0,00</h2>
+        </div>
+        <div class="icon">
+          <span><i class="fa-solid fa-arrow-down fa-2xl"></i></span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content-card">
+          <p>Saldo Atual</p>
+          <h2 class="card-value" id="balance">R$ 0,00</h2>
+        </div>
+        <div class="icon">
+          <span><i class="fa-solid fa-building-columns fa-2xl"></i></span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="container-chart">
     <div class="chart">
       <canvas id="linechart"></canvas>
     </div>
@@ -37,9 +69,14 @@
     <button data-modal="abrir">Adicionar</button>
     <button id="delete">Apagar tudo</button>
   </div>
+
   <section class="modal-container" data-modal="container">
     <div class="modal">
       <button data-modal="fechar" class="fechar">X</button>
+      <ul id="typeInput">
+        <li class="gain">Ganho</li>
+        <li class="expenditure">Despesa</li>
+      </ul>
       <label for="descripttion">Digite a descrição: </label>
       <input type="text" id="description" class="inputs">
       <label for="value">Informe o valor: </label>
@@ -48,13 +85,17 @@
       <input type="text" id="category" class="inputs">
       <label for="date">Informe a data:</label>
       <input type="date" id="date" class="inputs">
+      <h3 class="alert"></h3>
       <button id="btnConfirm" class="buttons">Confirmar</button>
       <button id="btnUpdate" class="buttons">Atualizar</button>
       <button id="btnDelete" class="buttons">Apagar</button>
       <!-- <button id="btnUpdate" class="buttons">Atualizar</button> -->
+
     </div>
   </section>
 
+
+  <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>
   <script type="module" src="main.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./js/chart1.js"></script>

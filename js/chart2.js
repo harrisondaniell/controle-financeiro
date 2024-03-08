@@ -5,13 +5,12 @@ let transitor;
 let labelsX = []
 let valores = [25, 25, 25, 25]
 function att() {
-  if (JSON.parse(localStorage.getItem(('allAccounts')))) {
-    transitor = JSON.parse(localStorage.getItem(('allAccounts')))
+  if (JSON.parse(localStorage.getItem(('allExpenseRecords')))) {
+    transitor = JSON.parse(localStorage.getItem(('allExpenseRecords')))
     labelsX = transitor.allCategorys
-    console.log(labelsX)
-    console.log('labelsX')
+    valores = transitor.values
+    // console.log(valores)
   }
-  valores = JSON.parse(localStorage.getItem(('values')))
 }
 att()
 
@@ -37,10 +36,11 @@ let rgba1 = [
 const data = {
   labels: labelsX,
   datasets: [{
-    label: labelsX,
+    // label: labelsX,
     data: valores,
     backgroundColor: rgba,
     borderColor: rgba1,
+    // borderWidth: 20,
     hoverOffset: 4
   }]
 };
