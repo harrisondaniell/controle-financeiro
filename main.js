@@ -156,7 +156,6 @@ function instantiateClass(text, Class, id) {
   inputValue[2] = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   let newItem = new Class(inputValue[0], +inputValue[1], inputValue[2], inputValue[3], inputValue[3], id)
   newItem.formatDate()
-  id++
   return newItem
 }
 
@@ -168,6 +167,7 @@ function addItemExpenditure() {
   arrayExpenditure.push(newItem)
   createTr(newItem)
   checkNewAccount(allExpenseRecords, 'allExpenseRecords', newItem.category, newItem.value)
+  id++
   saveLocalStorage('arrayExpenditure', arrayExpenditure)
   saveLocalStorage('id', id)
   inputs.forEach(item => item.value = '');
