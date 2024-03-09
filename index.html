@@ -11,7 +11,6 @@
 <body>
   <main>
     <section class="section-cards">
-
       <div class="card">
         <div class="content-card">
           <p>Ganhos</p>
@@ -51,19 +50,31 @@
   </div>
 
 
-  <table>
-    <thead>
-      <tr>
-        <th>Descrição</th>
-        <th>Valor</th>
-        <th>Categoria</th>
-        <th>Data</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  <section class="table">
+    <section class="table-header">
+      <h1>Tabela Completa</h1>
+      <div class="input-itens">
+        <input type="search" placeholder="Procurar registro...">
+        <span> <i class="fa-solid fa-magnifying-glass"></i></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="table-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Categoria</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+  </section>
 
   <div class="buttons">
     <button data-modal="abrir">Adicionar</button>
@@ -89,8 +100,6 @@
       <button id="btnConfirm" class="buttons">Confirmar</button>
       <button id="btnUpdate" class="buttons">Atualizar</button>
       <button id="btnDelete" class="buttons">Apagar</button>
-      <!-- <button id="btnUpdate" class="buttons">Atualizar</button> -->
-
     </div>
   </section>
 
@@ -100,6 +109,7 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./js/chart1.js"></script>
   <script type="module" src="./js/chart2.js"></script>
+  <script src="./js/filter.js" defer></script>
 </body>
 
 </html>

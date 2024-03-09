@@ -1,4 +1,4 @@
-import { Revenue, Expenditure } from "./js/Classes.js"
+import { Revenue, Expenditure, Account } from "./js/Classes.js"
 
 const btnConfirm = document.getElementById('btnConfirm');
 const btnUpdate = document.getElementById('btnUpdate');
@@ -13,6 +13,8 @@ const revenue = document.getElementById('revenue')
 const btnOpen = document.querySelector('[data-modal="abrir"]')
 const btnClose = document.querySelector('[data-modal="fechar"]')
 const containerModal = document.querySelector('[data-modal="container"]')
+const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
+
 let arrayExpenditure = [];
 let arrayRevenue = [];
 let values = []
@@ -23,16 +25,11 @@ let allExpenseRecords = {
   values: [],
   valueTotal: 0
 }
-const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
-
 let allRevenueRecords = {
   categorys: [],
   allCategorys: [],
   values: [],
-  valueTotal: 0,
-  getValues: function () {
-    this.valueTotal = this.values.map((acc, value) => acc + value, 0)
-  }
+  valueTotal: 0
 }
 let trs = Array.from(document.querySelectorAll('tbody tr'))
 let edit = document.querySelectorAll('td span.edit');
@@ -44,17 +41,19 @@ let targetId;
 let trTarget;
 let targetPosition;
 const getLocalStorage = key => JSON.parse(localStorage.getItem((key)));
+const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value))
+const alertText = text => alert.innerText = text
 let liSelected;
 
 const liInput = document.querySelectorAll('#typeInput li');
-liInput.forEach(item => {
-  item.addEventListener('click', (event) => {
-    liInput.forEach(li => li.classList.remove('selected'))
-    event.target.classList.add('selected')
-    alertText('')
-  })
-})
 
+function classesLi(event) {
+  liInput.forEach(li => li.classList.remove('selected'))
+  event.target.classList.add('selected')
+  alertText('')
+}
+const addEventLi = () => liInput.forEach(item => item.addEventListener('click', classesLi))
+addEventLi()
 const verificLocalStorage = () => {
   let content = getLocalStorage('arrayExpenditure')
   if (content) {
@@ -75,8 +74,6 @@ const verificLocalStorage = () => {
   }
 }
 verificLocalStorage()
-
-
 
 function openModal(event, className) {
   event.preventDefault();
@@ -108,25 +105,12 @@ btnClose.addEventListener('click', closeModal)
 containerModal.addEventListener('click', clickOutsideModal)
 
 
-
-
-class Account {
-  constructor(category, value) {
-    this.category = category;
-    this.value = value;
-  }
-}
-
 function formatDate(dateInput, element) {
   const [ano, mes, dia] = dateInput.split('-');
   element.date = `${dia}/${mes}/${ano}`;
 }
 
-function saveLocalStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value))
-}
 
-let alertText = text => alert.innerText = text
 
 function checkFields() {
   let verific = false
@@ -154,7 +138,7 @@ function checkFields() {
 function instantiateClass(text, Class, id) {
   let inputValue = inputs.map(item => item.value)
   inputValue[2] = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  let newItem = new Class(inputValue[0], +inputValue[1], inputValue[2], inputValue[3], inputValue[3], id)
+  let newItem = new Class(inputValue[0], +inputValue[1], inputValue[2], inputValue[3], inputValue[3], id, liSelected)
   newItem.formatDate()
   return newItem
 }
@@ -194,6 +178,7 @@ btnConfirm.addEventListener('click', () => {
       addItemExpenditure()
     else
       addItemRevenue()
+    addEventLi()
   }
 })
 
@@ -217,8 +202,8 @@ function createTable() {
 createTable()
 
 function createTr(obj) {
-  const { description, value, category, dateInput, date, id } = obj;
-  let props = [description, value, category, date]
+  const { description, value, category, dateInput, date, id, type } = obj;
+  let props = [description, value, category, date, type]
   insertRow(props, id)
 }
 
@@ -229,7 +214,7 @@ function createElement(tag, ...arrayClassName) {
 }
 
 function createActions() {
-  let td = createElement('td');
+  let td = createElement('td', 'spans');
   let span = createElement('span', 'edit')
   let span2 = createElement('span', 'delete')
   let iEdit = createElement('i', 'fa-solid', 'fa-pen-to-square', 'fa-xl')
@@ -310,8 +295,15 @@ function getValuesTd(event, i, className) {
   value.value = arrayExpenditure[i].value
   category.value = arrayExpenditure[i].category
   date.value = arrayExpenditure[i].dateInput
-  openModal(event, className)
   targetId = arrayExpenditure[i].id
+  liInput.forEach(item => {
+    item.classList.contains(arrayExpenditure[i].type) ? item.classList.add('selected') : ''
+    item.removeEventListener('click', classesLi)
+  })
+
+
+
+  openModal(event, className)
 }
 
 function updateTd(event) {
