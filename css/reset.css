@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-:root{
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
   --nav-width: 92px;
   --first-color: #0C5DF4;
   --bg-color: #12192C;

@@ -94,3 +94,38 @@ section .card:nth-of-type(2) .icon {
   color: white;
   cursor: pointer;
 }
+
+
+#dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+td.expenditure::after {
+  margin: 0 auto;
+  content: '';
+  width: 100px;
+  height: 10px;
+  background-color: red;
+  display: block;
+}
+
+td.expenditure::after {
+  margin: 0 auto;
+  content: '';
+  width: 90px;
+  height: 10px;
+  background-color: red;
+  display: block;
+}
+
+td.gain::after {
+  margin: 0 auto;
+  content: '';
+  width: 90px;
+  height: 10px;
+  background-color: green;
+  display: block;
+}

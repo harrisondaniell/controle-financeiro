@@ -9,7 +9,7 @@
 </head>
 
 <body id="body-pd">
-  <div class="l-navbar" id="navbar">
+  <header class="l-navbar" id="navbar">
     <nav class="nav">
       <div>
         <div class="nav__brand">
@@ -26,7 +26,7 @@
             <ion-icon name="home-outline" class="nav__icon"></ion-icon>
             <span class="nav__name">Dashboard</span>
           </a>
-          <a href="#" class="nav__link">
+          <a href="#table" class="nav__link">
             <i class="fa-solid fa-table fa-lg" class="nav__icon"></i>
             <span class="nav__name">Tabela</span>
           </a>
@@ -42,18 +42,14 @@
           </a>
         </div>
       </div>
-
       <a href="#" class="nav__link">
         <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
         <span class="nav__name">Login</span>
       </a>
     </nav>
-  </div>
-
-  <h1>Dashboard</h1>
-
-
-  <main>
+  </header>
+  <main id="dashboard">
+    <h1>Dashboard</h1>
     <section class="section-cards">
       <div class="card">
         <div class="content-card">
@@ -83,18 +79,19 @@
         </div>
       </div>
     </section>
+    <section>
+      <div class="container-chart">
+        <div class="chart">
+          <canvas id="linechart"></canvas>
+        </div>
+        <div class="chart">
+          <canvas id="doughnut-chart"></canvas>
+        </div>
+      </div>
+    </section>
   </main>
-  <div class="container-chart">
-    <div class="chart">
-      <canvas id="linechart"></canvas>
-    </div>
-    <div class="chart">
-      <canvas id="doughnut-chart"></canvas>
-    </div>
-  </div>
 
-
-  <section class="table">
+  <section class="table" id="table">
     <section class="table-header">
       <h1>Tabela Completa</h1>
       <div class="input-itens">
