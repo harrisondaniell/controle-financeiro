@@ -1,4 +1,6 @@
 import { Revenue, Expenditure, Account } from "./js/Classes.js"
+import initFilter from "./js/filter.js";
+import initSideBar from "./js/sidebar.js";
 
 const btnConfirm = document.getElementById('btnConfirm');
 const btnUpdate = document.getElementById('btnUpdate');
@@ -18,7 +20,6 @@ const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
 let arrayExpenditure = [];
 let arrayRevenue = [];
 let values = []
-let valueTotal = 0;
 let allExpenseRecords = {
   categorys: [],
   allCategorys: [],
@@ -61,18 +62,21 @@ const verificLocalStorage = () => {
     id = +(localStorage.getItem('id'))
     allExpenseRecords = getLocalStorage('allExpenseRecords')
     allExpenseRecords.valueTotal = getValuesAll(allExpenseRecords.values)
-    console.log(allExpenseRecords.categorys[0])
     expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
   }
-  content = getLocalStorage('arrayRevenue')
-  if (content) {
-    arrayRevenue = content.slice();
+  let content2 = getLocalStorage('arrayRevenue')
+  if (content2) {
+    arrayRevenue = content2.slice();
     idR = +(localStorage.getItem('idR'))
-    allRevenueRecords = getLocalStorage('allExpenseRecords')
-    allRevenueRecords.valueTotal = getValuesAll(allRevenueRecords.values)
-    revenue.innerText = `R$ ${valueTotal}`
+    allRevenueRecords = getLocalStorage('allRevenueRecords')
+    console.log(allRevenueRecords)
+    if (allRevenueRecords && allRevenueRecords.values) {
+      allRevenueRecords.valueTotal = getValuesAll(allRevenueRecords.values)
+      revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
+    }
   }
 }
+
 verificLocalStorage()
 
 function openModal(event, className) {
@@ -93,6 +97,7 @@ function closeModal(event) {
     item.disabled = false
   })
   liInput.forEach(li => li.classList.remove('selected'))
+  addEventLi()
 }
 
 function clickOutsideModal(event) {
@@ -144,9 +149,8 @@ function instantiateClass(text, Class, id) {
 }
 
 function addItemExpenditure() {
-  if (!checkFields()) {
+  if (!checkFields())
     return false
-  }
   let newItem = instantiateClass(category.value, Expenditure, id)
   arrayExpenditure.push(newItem)
   createTr(newItem)
@@ -165,7 +169,8 @@ function addItemRevenue() {
   let newItem = instantiateClass(category.value, Revenue, idR)
   arrayRevenue.push(newItem)
   createTr(newItem)
-  checkNewAccount(allRevenueRecords, 'allRevenenueRecords', newItem.category, newItem.value)
+  checkNewAccount(allRevenueRecords, 'allRevenueRecords', newItem.category, newItem.value)
+  idR++
   saveLocalStorage('arrayRevenue', arrayRevenue)
   saveLocalStorage('idR', idR)
   inputs.forEach(item => item.value = '');
@@ -193,11 +198,14 @@ function clear() {
 }
 
 function createTable() {
-  arrayExpenditure.forEach(item => {
-    const { description, value, category, dateInput, date, id } = item;
-    let props = [description, value, category, date]
+  let fullArray = arrayExpenditure.concat(arrayRevenue)
+
+  fullArray.forEach(item => {
+    const { description, value, category, dateInput, date, id, type } = item;
+    let props = [type, description, value, category, date]
     insertRow(props, id)
   })
+
 }
 createTable()
 
@@ -257,10 +265,10 @@ function checkNewAccount(array, arrayString, category, value) {
     addValue(array, arrayString, category, value)
   else
     addAccounts(array, arrayString, category, value)
-
 }
 
 function addValue(array, arrayString, category, value) {
+  console.log(array, arrayString, category, value)
   let position = array.allCategorys.indexOf(category.toLowerCase())
   console.log(position)
   if (position !== -1) {
@@ -289,7 +297,6 @@ function findPosition(array, id) {
   return -1;
 }
 
-
 function getValuesTd(event, i, className) {
   description.value = arrayExpenditure[i].description;
   value.value = arrayExpenditure[i].value
@@ -300,9 +307,6 @@ function getValuesTd(event, i, className) {
     item.classList.contains(arrayExpenditure[i].type) ? item.classList.add('selected') : ''
     item.removeEventListener('click', classesLi)
   })
-
-
-
   openModal(event, className)
 }
 
@@ -372,5 +376,5 @@ function DeleteOrSubt(category, value) {
 
 
 
-
-
+initFilter()
+initSideBar()

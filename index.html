@@ -8,7 +8,51 @@
   <title>Document</title>
 </head>
 
-<body>
+<body id="body-pd">
+  <div class="l-navbar" id="navbar">
+    <nav class="nav">
+      <div>
+        <div class="nav__brand">
+          <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+          <a href="#" class="nav__logo">Primo Dev</a>
+        </div>
+        <div class="nav__list">
+          <a href="#" class="nav__link" data-modal="abrir">
+            <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
+            <span class="nav__name">Adicionar</span>
+          </a>
+
+          <a href="#" class="nav__link activeSide">
+            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+            <span class="nav__name">Dashboard</span>
+          </a>
+          <a href="#" class="nav__link">
+            <i class="fa-solid fa-table fa-lg" class="nav__icon"></i>
+            <span class="nav__name">Tabela</span>
+          </a>
+
+          <a href="#" class="nav__link">
+            <i class="fa-solid fa-chart-simple fa-xl nav_icon"></i>
+
+            <span class="nav__name">Análises</span>
+          </a>
+          <a href="#" class="nav__link">
+            <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+            <span class="nav__name">Configurações</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="#" class="nav__link">
+        <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+        <span class="nav__name">Login</span>
+      </a>
+    </nav>
+  </div>
+
+  <h1>Dashboard</h1>
+
+
   <main>
     <section class="section-cards">
       <div class="card">
@@ -63,6 +107,7 @@
       <table>
         <thead>
           <tr>
+            <th>Tipo</th>
             <th>Descrição</th>
             <th>Valor</th>
             <th>Categoria</th>
@@ -77,7 +122,6 @@
   </section>
 
   <div class="buttons">
-    <button data-modal="abrir">Adicionar</button>
     <button id="delete">Apagar tudo</button>
   </div>
 
@@ -103,13 +147,12 @@
     </div>
   </section>
 
-
-  <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>
   <script type="module" src="main.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./js/chart1.js"></script>
   <script type="module" src="./js/chart2.js"></script>
-  <script src="./js/filter.js" defer></script>
+  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+  <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
