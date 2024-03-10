@@ -35,6 +35,24 @@ export default function initSideBar() {
     })
   }
 
+  function highlightSidebarIcon() {
+    const sections = document.querySelectorAll('.section')
+    const sidebarLinks = document.querySelectorAll('.nav__link')
+
+    sections.forEach((section, index) => {
+      const sectionTop = section.offsetTop - 100
+      const sectionBottom = sectionTop + section.clientHeight;
+
+      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+        sidebarLinks.forEach((link) => {
+          link.classList.remove('activeSide')
+        });
+        sidebarLinks[index].classList.add('activeSide')
+      }
+    });
+  }
+
+  window.addEventListener('scroll', highlightSidebarIcon)
 
 
 }

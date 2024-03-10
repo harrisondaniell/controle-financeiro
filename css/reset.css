@@ -7,13 +7,29 @@ html {
 :root {
   --nav-width: 92px;
   --first-color: #0C5DF4;
-  --bg-color: #12192C;
+  --bg-color: #fff4;
+  --bg-side-bar: #331d4a;
+  --bg-chart: #fff;
+  --title: #000;
   --sub-color: #B6CEFC;
   --white-color: #FFF;
   --body-font: 'Poppins';
   --normal-font-size: 1rem;
   --small-font-size: .875rem;
   --z-fixed: 100;
+  --bg-cards: linear-gradient(to bottom right, #773d94, #240047);
+}
+
+body.dark {
+  --bg-cards: #331d4a;
+  --bg-color: #12192C;
+  --bg-chart: tranparent;
+  /* #031634 */
+  --title: #fff;
+  /* --bg-side-bar: #240047; */
+
+
+
 }
 
 * {
@@ -29,4 +45,5 @@ body {
   justify-content: center;
   overflow-x: hidden;
   font-family: 'Poppins';
+  background-color: var(--bg-color);
 }

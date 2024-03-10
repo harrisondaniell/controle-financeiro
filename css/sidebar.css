@@ -1,9 +1,12 @@
 @import 'reset.css';
 
-*,::before,::after{
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
-body{
+
+body {
   position: relative;
   margin: 0;
   padding: 2rem 0 0 6.75rem;
@@ -11,56 +14,63 @@ body{
   font-size: var(--normal-font-size);
   transition: .5s;
 }
-h1{
+
+h1 {
   margin: 0;
 }
-ul{
+
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-a{
+
+a {
   text-decoration: none;
 }
 
-.l-navbar{
+.l-navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: var(--nav-width);
   height: 100vh;
-  background-color: var(--bg-color);
+  background-color: var(--bg-side-bar);
   color: var(--white-color);
   padding: 1.5rem 1.5rem 2rem;
   transition: .5s;
   z-index: var(--z-fixed);
 }
 
-.nav{
+.nav {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
 }
-.nav__brand{
+
+.nav__brand {
   display: grid;
   grid-template-columns: max-content max-content;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
 }
-.nav__toggle{
+
+.nav__toggle {
   font-size: 1.25rem;
   padding: .75rem;
   cursor: pointer;
 }
-.nav__logo{
+
+.nav__logo {
   color: var(--white-color);
   font-weight: 600;
 }
 
-.nav__link{
+.nav__link,
+.nav__link1 {
   display: grid;
   grid-template-columns: max-content max-content;
   align-items: center;
@@ -72,51 +82,59 @@ a{
   transition: .3s;
   cursor: pointer;
 }
-.nav__link:hover{
+
+.nav__link:hover,
+.nav__link1:hover {
   background-color: var(--first-color);
 }
-.nav__icon{
+
+.nav__icon {
   font-size: 1.25rem;
 }
-.nav__name{
+
+.nav__name {
   font-size: var(--small-font-size);
 }
 
-.expander{
+.expander {
   width: calc(var(--nav-width) + 9.25rem);
 }
 
-.body-pd{
+.body-pd {
   padding: 2rem 0 0 16rem;
 }
 
-.activeSide{
+.activeSide {
   background-color: var(--first-color);
 }
 
-.collapse{
+.collapse {
   grid-template-columns: 20px max-content 1fr;
 }
-.collapse__link{
+
+.collapse__link {
   justify-self: flex-end;
   transition: .5s;
 }
-.collapse__menu{
+
+.collapse__menu {
   display: none;
   padding: .75rem 2.25rem;
 }
-.collapse__sublink{
+
+.collapse__sublink {
   color: var(--sub-color);
   font-size: var(--small-font-size);
 }
-.collapse__sublink:hover{
+
+.collapse__sublink:hover {
   color: var(--white-color);
 }
 
-.showCollapse{
+.showCollapse {
   display: block;
 }
 
-.rotate{
+.rotate {
   transform: rotate(180deg);
 }

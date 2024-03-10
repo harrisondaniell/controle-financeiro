@@ -6,11 +6,6 @@
 
 
 
-
-:root {
-  --cor-primaria: #ff0000;
-}
-
 /* Utilizando a variável
 body {
   color: var(--cor-primaria);
@@ -20,10 +15,14 @@ body.dark {
 }
 
 body {
-  background-color: #d4bdde;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+h1 {
+  color: var(--title);
 }
 
 .section-cards {
@@ -38,8 +37,8 @@ section .card {
   width: 320px;
   height: 90px;
   border-radius: 20px;
-  background-color: #fff;
-  border: none;
+  background: var(--bg-cards);
+  color: white;
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -67,6 +66,11 @@ section .card .container {
   justify-content: center;
 }
 
+body .icon {
+  width: 0;
+  height: 0;
+}
+
 section .card:nth-of-type(1) .icon {
   background-color: #63e6be;
 }
@@ -76,6 +80,18 @@ section .card:nth-of-type(2) .icon {
 }
 
 .icon * {
+  color: #fff;
+}
+
+.fa-arrow-up {
+  color: #63e6be;
+}
+
+.fa-arrow-down {
+  color: red;
+}
+
+.fa-building-columns {
   color: #fff;
 }
 

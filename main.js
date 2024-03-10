@@ -16,10 +16,9 @@ const btnOpen = document.querySelector('[data-modal="abrir"]')
 const btnClose = document.querySelector('[data-modal="fechar"]')
 const containerModal = document.querySelector('[data-modal="container"]')
 const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
-
+const balance = document.getElementById('balance')
 let arrayExpenditure = [];
 let arrayRevenue = [];
-let values = []
 let allExpenseRecords = {
   categorys: [],
   allCategorys: [],
@@ -47,6 +46,7 @@ const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringif
 const alertText = text => alert.innerText = text
 let liSelected;
 
+
 const liInput = document.querySelectorAll('#typeInput li');
 
 function classesLi(event) {
@@ -58,25 +58,28 @@ const addEventLi = () => liInput.forEach(item => item.addEventListener('click', 
 addEventLi()
 const verificLocalStorage = () => {
   let content = getLocalStorage('arrayExpenditure')
+  let saldo = 0;
   if (content) {
     arrayExpenditure = content.slice();
     id = +(localStorage.getItem('id'))
     allExpenseRecords = getLocalStorage('allExpenseRecords')
-    allExpenseRecords.valueTotal = getValuesAll(allExpenseRecords.values)
+    allExpenseRecords.valueTotal = +getValuesAll(allExpenseRecords.values)
     expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
+    saldo -= allExpenseRecords.valueTotal
   }
-  let content2 = getLocalStorage('arrayRevenue')
-  if (content2) {
-    arrayRevenue = content2.slice();
+  content = getLocalStorage('arrayRevenue')
+  if (content) {
+    arrayRevenue = content.slice();
     idR = +(localStorage.getItem('idR'))
     allRevenueRecords = getLocalStorage('allRevenueRecords')
     if (allRevenueRecords && allRevenueRecords.values) {
-      allRevenueRecords.valueTotal = getValuesAll(allRevenueRecords.values)
+      allRevenueRecords.valueTotal = +getValuesAll(allRevenueRecords.values)
       revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
+      saldo += allRevenueRecords.valueTotal
     }
   }
+  balance.textContent = `R$ ${saldo}`
 }
-
 verificLocalStorage()
 
 function openModal(event, className) {
@@ -339,7 +342,7 @@ function updateData(array, arrayString, subArray, subArrayString) {
   let categoryA = array[i].category
   let valueA = array[i].value
   array[i].description = description.value;
-  array[i].value = value.value;
+  array[i].value = +value.value;
   array[i].category = category.value;
   array[i].dateInput = date.value;
   formatDate(array[i].dateInput, array[i]);
@@ -376,6 +379,14 @@ function deleteTd(event) {
   }
 }
 
+function finishDelete(position, array, arrayString, subArray, subArrayString) {
+  let c, v;
+  c = array[position].category
+  v = array[position].value
+  DeleteOrSubt(subArray, subArrayString, c, v)
+  array.splice(position, 1)
+  saveLocalStorage(arrayString, array)
+}
 btnDelete.addEventListener('click', () => {
   trTarget.remove()
   let c, v;
@@ -401,14 +412,28 @@ function DeleteOrSubt(array, arrayString, category, value) {
   if (verific <= 0) {
     array.categorys.splice(position, 1)
     array.allCategorys.splice(position, 1)
-    values.splice(position, 1)
+    array.values.splice(position, 1)
   } else {
     array.categorys[position].value -= value
-    values[position] -= value
+    array.values[position] -= value
+    array.valueTotal = getValuesAll(array.values)
+    allExpenseRecords
   }
-  saveLocalStorage('values', values)
   saveLocalStorage(arrayString, array)
 }
+
+
+function updateCards() {
+  let saldo = 0;
+  expenditure.textContent = `R$ ${allExpenseRecords.valueTotal}`
+  saldo -= allExpenseRecords.valueTotal
+  revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
+  saldo += allRevenueRecords.valueTotal
+  balance.textContent = `R$ ${saldo}`
+}
+let buttons = document.querySelectorAll('.buttons')
+console.log(buttons)
+buttons.forEach(item => item.addEventListener('click', updateCards))
 
 initFilter()
 initSideBar()
