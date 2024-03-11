@@ -31,7 +31,7 @@ const config = {
     plugins: {
       title: {
         display: true,
-        // text: ''
+        text: 'Ilustração'
       }
     },
     scales: {

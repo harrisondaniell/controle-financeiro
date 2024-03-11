@@ -81,6 +81,8 @@ const verificLocalStorage = () => {
 }
 verificLocalStorage()
 
+
+
 function openModal(event, className) {
   event.preventDefault();
   containerModal.classList.add('active')
@@ -348,6 +350,7 @@ function updateData(array, arrayString, subArray, subArrayString) {
   checkAccount(subArray, subArrayString, array[i].category, array[i].value)
   let tr = tbody.querySelectorAll('tr')
   tr.forEach(item => item.remove())
+  updateCards()
   createTable()
 }
 
@@ -416,6 +419,7 @@ function DeleteOrSubt(array, arrayString, category, value) {
     allExpenseRecords
   }
   saveLocalStorage(arrayString, array)
+  updateCards()
   // if(array.categorys.length === 0){
   //   clear()
   // }
@@ -432,6 +436,8 @@ function updateCards() {
 }
 let buttons = document.querySelectorAll('.buttons')
 buttons.forEach(item => item.addEventListener('click', updateCards))
+
+
 
 initFilter()
 initSideBar()

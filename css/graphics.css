@@ -15,12 +15,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
-body.dark .chart {
-  /* border: 1px solid #fff; */
-  /* box-shadow: none; */
-}
-
 .chart-line {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
