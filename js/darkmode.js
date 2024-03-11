@@ -1,7 +1,4 @@
-const btnDark = document.getElementById('darkmode')
 
-function togglebody() {
-  document.body.classList.toggle('dark')
-}
-
-btnDark.addEventListener('click', togglebody)
+const btn = document.getElementById('btn')
+const innerBtn = document.querySelector('.inner-btn');
+btn.addEventListener('click', () => document.body.classList.toggle('dark'));

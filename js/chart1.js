@@ -35,11 +35,11 @@ att();
 const data = {
   labels: labelsX,
   datasets: [{
-    label: labelsX,
+    label: '',
     data: valores,
     backgroundColor: rgba2,
     fill: false,
-    borderColor: 'rgb(75, 192, 192)',
+    borderColor: '#331d4a',
     tension: 0.2
   }]
 };
@@ -50,7 +50,7 @@ const config = {
 };
 
 let linechart = new Chart(ctx2, config);
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.buttons');
 buttons.forEach(item => {
   item.addEventListener('click', () => {
     att()
@@ -69,10 +69,3 @@ linechart.update()
 
 
 
-const btnDark = document.getElementById('darkmode')
-btnDark.addEventListener('click', () => {
-  rgba2 = document.body.classList.contains('dark') ? rgba : rgba1;
-  console.log(rgba2)
-  att()
-
-})

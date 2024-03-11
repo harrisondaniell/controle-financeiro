@@ -9,7 +9,7 @@
 body {
   position: relative;
   margin: 0;
-  padding: 2rem 0 0 6.75rem;
+  /* padding: 2rem 0 0 6.75rem; */
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   transition: .5s;
@@ -83,9 +83,22 @@ a {
   cursor: pointer;
 }
 
-.nav__link:hover,
-.nav__link1:hover {
+.nav__link:hover {
   background-color: var(--first-color);
+}
+
+.nav__link1 {
+  color: var(--bg-side-bar);
+  background-color: #fff;
+  border-radius: 50%;
+  margin-bottom: 50px;
+  margin-top: 0;
+}
+
+header.expander .nav__link1 {
+  background: none;
+  color: #fff;
+  border-radius: none;
 }
 
 .nav__icon {
@@ -137,4 +150,11 @@ a {
 
 .rotate {
   transform: rotate(180deg);
+}
+
+
+@media (max-width: 767px) {
+  #navbar {
+    display: none;
+  }
 }

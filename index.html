@@ -49,8 +49,7 @@
     </nav>
   </header>
   <main id="dashboard" class="section">
-    <button id="darkmode">DARKMODE</button>
-    <h1>Dashboard</h1>
+    <!-- <h1>Dashboard</h1> -->
     <section class="section-cards">
       <div class="card">
         <div class="content-card">
@@ -79,6 +78,10 @@
           <span><i class="fa-solid fa-building-columns fa-2xl"></i></span>
         </div>
       </div>
+      <div id="btn" class="buttons">
+        <div class="inner-btn">
+        </div>
+      </div>
     </section>
     <section>
       <div class="container-chart">
@@ -88,6 +91,9 @@
         <div class="chart">
           <canvas id="doughnut-chart"></canvas>
         </div>
+      </div>
+      <div class="chart-line">
+        <canvas id="ctx3"></canvas>
       </div>
     </section>
   </main>
@@ -149,6 +155,7 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./js/chart1.js"></script>
   <script type="module" src="./js/chart2.js"></script>
+  <script type="module" src="./js/chart3.js"></script>
   <script src="./js/darkmode.js"></script>
   <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
   <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>

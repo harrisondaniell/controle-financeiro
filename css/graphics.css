@@ -11,16 +11,21 @@
   height: 400px;
   padding: 2rem;
   border-radius: 1rem;
-  /* background: #1e0c42; */
-  /* background: #200e38; */
-  /* #031634 */
+
   background: var(--bg-chart);
-  /* background-image: linear-gradient(to bottom right, #240047, #6c067a); */
-  /* background: #251c35; */
+
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 body.dark .chart {
   /* border: 1px solid #fff; */
   /* box-shadow: none; */
+}
+
+.chart-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  border-radius: 1rem;
 }

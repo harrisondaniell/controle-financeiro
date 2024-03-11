@@ -4,6 +4,12 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --nav-width: 92px;
   --first-color: #0C5DF4;

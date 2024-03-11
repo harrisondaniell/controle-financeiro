@@ -1,0 +1,28 @@
+#btn {
+  background-color: #2b2b2b;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 10rem;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inner-btn {
+  background-color: #fff;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  transition: transform .3s ease;
+}
+
+
+body.dark #btn {
+  background-color: #fff;
+}
+
+body.dark .inner-btn {
+  background-color: #2b2b2b;
+  transform: translateX(2.5rem);
+}

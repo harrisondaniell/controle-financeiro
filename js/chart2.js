@@ -50,7 +50,7 @@ let teste = {
   data: data,
 }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.buttons');
 let doughnut = new Chart(ctx1, teste);
 buttons.forEach(item => item.addEventListener('click', () => {
   att()
@@ -60,12 +60,3 @@ buttons.forEach(item => item.addEventListener('click', () => {
   doughnut.update();
 })
 )
-
-
-const btnDark = document.getElementById('darkmode')
-btnDark.addEventListener('click', () => {
-  rgba2 = document.body.classList.contains('dark') ? rgba : rgba1;
-  console.log(rgba2)
-  att()
-
-})

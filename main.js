@@ -45,8 +45,6 @@ const getLocalStorage = key => JSON.parse(localStorage.getItem((key)));
 const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value))
 const alertText = text => alert.innerText = text
 let liSelected;
-
-
 const liInput = document.querySelectorAll('#typeInput li');
 
 function classesLi(event) {
@@ -437,3 +435,5 @@ buttons.forEach(item => item.addEventListener('click', updateCards))
 
 initFilter()
 initSideBar()
+
+
