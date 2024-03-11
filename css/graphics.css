@@ -11,9 +11,7 @@
   height: 400px;
   padding: 2rem;
   border-radius: 1rem;
-
   background: var(--bg-chart);
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
@@ -26,6 +24,18 @@ body.dark .chart {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 380px;
+  height: 330px;
   border-radius: 1rem;
+}
+
+
+@media (max-width: 767px) {
+  .container-chart {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-line {
+    height: 200px;
+  }
 }

@@ -1,6 +1,7 @@
-import { Revenue, Expenditure, Account } from "./js/Classes.js"
-import initFilter from "./js/filter.js";
-import initSideBar from "./js/sidebar.js";
+import { Revenue, Expenditure, Account } from "./Classes.js"
+import initFilter from "./filter.js";
+import initSideBar from "./sidebar.js";
+import { handleTheme } from "./darkmode.js";
 
 const btnConfirm = document.getElementById('btnConfirm');
 const btnUpdate = document.getElementById('btnUpdate');
@@ -12,7 +13,7 @@ const [description, value, category, date] = inputs;
 const alert = document.querySelector('.alert')
 const expenditure = document.getElementById('expenditure')
 const revenue = document.getElementById('revenue')
-const btnOpen = document.querySelector('[data-modal="abrir"]')
+const btnOpen = document.querySelectorAll('[data-modal="abrir"]')
 const btnClose = document.querySelector('[data-modal="fechar"]')
 const containerModal = document.querySelector('[data-modal="container"]')
 const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
@@ -106,7 +107,7 @@ function clickOutsideModal(event) {
     closeModal(event)
 }
 
-btnOpen.addEventListener('click', openModal)
+btnOpen.forEach(btn => btn.addEventListener('click', openModal))
 btnClose.addEventListener('click', closeModal)
 containerModal.addEventListener('click', clickOutsideModal)
 
@@ -435,5 +436,5 @@ buttons.forEach(item => item.addEventListener('click', updateCards))
 
 initFilter()
 initSideBar()
-
+handleTheme()
 

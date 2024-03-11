@@ -30,12 +30,8 @@ body.dark {
   --bg-cards: #331d4a;
   --bg-color: #12192C;
   --bg-chart: tranparent;
-  /* #031634 */
   --title: #fff;
   /* --bg-side-bar: #240047; */
-
-
-
 }
 
 * {
@@ -47,8 +43,9 @@ body.dark {
 body {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   overflow-x: hidden;
   font-family: 'Poppins';
   background-color: var(--bg-color);

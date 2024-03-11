@@ -1,6 +1,6 @@
 section.table {
   width: 82vw;
-  height: 90vh;
+  min-height: 90vh;
   background-color: #fff5;
   backdrop-filter: blur(7px);
   box-shadow: 0 .4rem .8rem #0005;
@@ -8,11 +8,6 @@ section.table {
   overflow: hidden;
 }
 
-/* width: 82vw;
-height: 90vh;
-background-color: #fff5;
-backdrop-filter: blur(7px);
-border-radius: .8rem; */
 
 table,
 th,
@@ -48,6 +43,10 @@ td {
   width: 45%;
   background-color: #fff8;
   box-shadow: 0 0.1rem .4rem #0002;
+}
+
+.table-header .input-itens {
+  box-shadow: 0 0.1rem .4rem #000;
 }
 
 .table-header .input-itens input {

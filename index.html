@@ -49,7 +49,13 @@
     </nav>
   </header>
   <main id="dashboard" class="section">
-    <!-- <h1>Dashboard</h1> -->
+    <div class="title">
+      <h1>Dashboard</h1>
+      <div id="btn" class="buttons">
+        <div class="inner-btn">
+        </div>
+      </div>
+    </div>
     <section class="section-cards">
       <div class="card">
         <div class="content-card">
@@ -71,25 +77,31 @@
       </div>
       <div class="card">
         <div class="content-card">
-          <p>Saldo Atual</p>
+          <p>Saldo</p>
           <h2 class="card-value" id="balance">R$ 0,00</h2>
         </div>
         <div class="icon">
           <span><i class="fa-solid fa-building-columns fa-2xl"></i></span>
         </div>
       </div>
-      <div id="btn" class="buttons">
-        <div class="inner-btn">
+      <div class="card" id="addItem" data-modal="abrir">
+        <div class="content-card">
+          <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
+          <h2 class="card-value" id="balance">Adicionar</h2>
+        </div>
+        <div class="icon">
+          <!-- <span><i class="fa-solid fa-building-columns fa-2xl"></i></span> -->
         </div>
       </div>
+
     </section>
     <section>
       <div class="container-chart">
         <div class="chart">
-          <canvas id="linechart"></canvas>
+          <canvas id="doughnut-chart"></canvas>
         </div>
         <div class="chart">
-          <canvas id="doughnut-chart"></canvas>
+          <canvas id="linechart"></canvas>
         </div>
       </div>
       <div class="chart-line">
@@ -151,12 +163,11 @@
     </div>
   </section>
 
-  <script type="module" src="main.js"></script>
+  <script type="module" src="./js/main.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module" src="./js/chart1.js"></script>
   <script type="module" src="./js/chart2.js"></script>
   <script type="module" src="./js/chart3.js"></script>
-  <script src="./js/darkmode.js"></script>
   <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
   <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>
 </body>

@@ -21,7 +21,6 @@
   padding: 40px;
   border-radius: 10px;
   border: 10px solid #200e38;
-  ;
   box-shadow: 0 0 0 10px white;
   position: relative;
 }
@@ -134,4 +133,23 @@
 #typeInput .expenditure.selected {
   background-color: red;
   color: #fff;
+}
+
+
+@media (max-width: 767px) {
+  .modal-container {
+    /* width: 100px; */
+    /* height: 100px; */
+    width: 100vw;
+  }
+
+  .modal {
+    min-width: 200px;
+    gap: 0;
+  }
+
+  .modal input{
+    width: 70vw;
+    height: 3.5vh;
+  }
 }
