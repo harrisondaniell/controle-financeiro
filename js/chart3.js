@@ -45,6 +45,5 @@ const config = {
 };
 
 const line = new Chart(ctx3, config);
-console.log(line)
 
 

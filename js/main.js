@@ -194,8 +194,8 @@ del.addEventListener('click', clear)
 
 function clear() {
   localStorage.clear();
-  arrayExpenditure = [];
   id = 1
+  idR = 1
   tbody.querySelectorAll('tr').forEach(item => item.remove())
 }
 
@@ -277,14 +277,11 @@ function checkNewAccount(array, arrayString, category, value) {
 }
 
 function addValue(array, arrayString, category, value) {
-  console.log(array, arrayString, category, value)
   let position = array.allCategorys.indexOf(category.toLowerCase())
-  console.log(position)
   if (position !== -1) {
     array.categorys[position].value += value;
     array.values[position] += value;
     array.valueTotal = getValuesAll(array.values)
-    console.log(array)
     saveLocalStorage(arrayString, array)
   }
 }
@@ -419,6 +416,9 @@ function DeleteOrSubt(array, arrayString, category, value) {
     allExpenseRecords
   }
   saveLocalStorage(arrayString, array)
+  // if(array.categorys.length === 0){
+  //   clear()
+  // }
 }
 
 
@@ -431,7 +431,6 @@ function updateCards() {
   balance.textContent = `R$ ${saldo}`
 }
 let buttons = document.querySelectorAll('.buttons')
-console.log(buttons)
 buttons.forEach(item => item.addEventListener('click', updateCards))
 
 initFilter()
