@@ -420,6 +420,7 @@ function DeleteOrSubt(array, arrayString, category, value) {
   }
   saveLocalStorage(arrayString, array)
   updateCards()
+  verificLocalStorage()
   // if(array.categorys.length === 0){
   //   clear()
   // }
