@@ -2,22 +2,45 @@
   display: none;
 }
 
+#topo {
+  display: none;
+}
+
 @media (max-width: 700px) {
+
+  body {
+    overflow: auto;
+    padding-top: 10px;
+  }
+
+  #topo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 90000;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: black;
+    padding: 12px 15px;
+  }
+
+  #topo h2 {
+    color: white;
+  }
+
   #btn-mobile {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: .5rem 1rem;
+    padding: .9rem 1rem;
     font-size: 1rem;
     border: none;
     background: none;
     cursor: pointer;
     gap: .5rem;
-    top: 5px;
-    z-index: 90000;
-    position: fixed;
-    width: 20vw;
-    color: black;
+
+    color: white;
+    /* background-color: red; */
   }
 
   body.active #btn-mobile {
@@ -25,7 +48,7 @@
   }
 
   .first__item {
-    margin-top: 30px;
+    margin-top: 70px;
   }
 
 
@@ -62,5 +85,12 @@
   .nav__brand {
     display: none;
   }
+
+  .top__pc {
+    display: none;
+  }
+
+
+
 
 }
