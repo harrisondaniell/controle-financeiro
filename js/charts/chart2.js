@@ -21,7 +21,7 @@ let transitor;
 let labelsX = []
 let valores = [25, 25, 25, 25]
 function att() {
-  if (JSON.parse(localStorage.getItem(('allExpenseRecords')))) {
+  if (JSON.parse(localStorage.getItem('allExpenseRecords'))) {
     transitor = JSON.parse(localStorage.getItem(('allExpenseRecords')))
     labelsX = transitor.allCategorys
     valores = transitor.values
@@ -29,9 +29,6 @@ function att() {
   rgba2 = document.body.classList.contains('dark') ? rgba : rgba1;
 }
 att()
-
-
-
 
 const data = {
   labels: labelsX,

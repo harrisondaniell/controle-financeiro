@@ -6,6 +6,7 @@ section.table {
   box-shadow: 0 .4rem .8rem #0005;
   border-radius: .8rem;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 
@@ -41,7 +42,7 @@ td {
 
 .table-header .input-itens:hover {
   width: 45%;
-  background-color: #fff8;
+  /* background-color: #fff8; */
   box-shadow: 0 0.1rem .4rem #0002;
 }
 
@@ -68,13 +69,13 @@ td {
 
 .table-body::-webkit-scrollbar {
   width: 0.1rem;
-  height: 0.5rem;
-  background-color: #0004;
+  height: .5rem;
+  background-color: #000;
 }
 
 .table-body::-webkit-scrollbar-thumb {
   border-radius: 5rem;
-  background-color: #0004;
+  background-color: #000;
   visibility: hidden;
 }
 
@@ -135,6 +136,23 @@ tbody tr.hide td span {
   padding: 0;
   font: 0/0 sans-serif;
   transition: .2s ease-in-out;
+}
+
+
+tbody tr td.gain::before {
+  content: '';
+  display: inline-block;
+  height: 0.5rem;
+  width: 6rem;
+  background-color: green;
+}
+
+tbody tr td.expenditure::before {
+  content: '';
+  display: inline-block;
+  height: 0.5rem;
+  width: 6rem;
+  background-color: red;
 }
 
 

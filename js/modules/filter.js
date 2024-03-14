@@ -1,4 +1,4 @@
-export default function initFilter() {
+export function initFilter() {
   const search = document.querySelector('.input-itens input')
   const rows = document.querySelectorAll('tbody tr');
   search.addEventListener('input', searchTable);

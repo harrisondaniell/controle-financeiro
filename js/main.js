@@ -1,11 +1,15 @@
-import { Revenue, Expenditure, Account } from "./Classes.js"
-import initFilter from "./filter.js";
-import initSideBar from "./sidebar.js";
-import { handleTheme } from "./darkmode.js";
+import { Revenue, Expenditure, Account } from "./modules/Classes.js"
+import { initFilter } from "./modules/filter.js";
+import initSideBar from "./modules/sidebar.js";
+import { handleTheme } from "./modules/darkmode.js";
+import { menuMobile } from "./modules/menu-mobile.js";
 
 const btnConfirm = document.getElementById('btnConfirm');
 const btnUpdate = document.getElementById('btnUpdate');
 const btnDelete = document.getElementById('btnDelete');
+const btnOpenModal = document.querySelectorAll('[data-modal="open"]')
+const btnCloseModal = document.querySelector('[data-modal="close"]')
+const containerModal = document.querySelector('[data-modal="container"]')
 const modal = document.querySelector('.modal')
 const tbody = document.querySelector('tbody');
 const inputs = Array.from(document.querySelectorAll('.inputs'));
@@ -13,11 +17,14 @@ const [description, value, category, date] = inputs;
 const alert = document.querySelector('.alert')
 const expenditure = document.getElementById('expenditure')
 const revenue = document.getElementById('revenue')
-const btnOpen = document.querySelectorAll('[data-modal="abrir"]')
-const btnClose = document.querySelector('[data-modal="fechar"]')
-const containerModal = document.querySelector('[data-modal="container"]')
-const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
 const balance = document.getElementById('balance')
+const liInput = document.querySelectorAll('#typeInput li');
+
+const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
+const getLocalStorage = key => JSON.parse(localStorage.getItem(key));
+const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value))
+const alertText = text => alert.innerText = text
+
 let arrayExpenditure = [];
 let arrayRevenue = [];
 let allExpenseRecords = {
@@ -32,21 +39,15 @@ let allRevenueRecords = {
   values: [],
   valueTotal: 0
 }
-let trs = Array.from(document.querySelectorAll('tbody tr'))
 let edit = document.querySelectorAll('td span.edit');
 let deleteSpan = document.querySelectorAll('td span.delete');
-let iDelete = document.querySelectorAll('span.delete i.fa-trash')
 let id = 1;
 let idR = 1;
 let targetId;
 let trTarget;
 let targetPosition;
 let typeTarget;
-const getLocalStorage = key => JSON.parse(localStorage.getItem((key)));
-const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value))
-const alertText = text => alert.innerText = text
 let liSelected;
-const liInput = document.querySelectorAll('#typeInput li');
 
 function classesLi(event) {
   liInput.forEach(li => li.classList.remove('selected'))
@@ -55,29 +56,33 @@ function classesLi(event) {
 }
 const addEventLi = () => liInput.forEach(item => item.addEventListener('click', classesLi))
 addEventLi()
+
 const verificLocalStorage = () => {
-  let content = getLocalStorage('arrayExpenditure')
-  let saldo = 0;
-  if (content) {
-    arrayExpenditure = content.slice();
-    id = +(localStorage.getItem('id'))
-    allExpenseRecords = getLocalStorage('allExpenseRecords')
-    allExpenseRecords.valueTotal = +getValuesAll(allExpenseRecords.values)
-    expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
-    saldo -= allExpenseRecords.valueTotal
+  const contentExpenditure = getLocalStorage('arrayExpenditure')
+  const contentRevenue = getLocalStorage('arrayRevenue')
+  let saldo = 0
+
+  if (contentExpenditure) {
+    arrayExpenditure = contentExpenditure.slice()
+    id = +localStorage.getItem('id')
+    const allExpenseRecords = getLocalStorage('allExpenseRecords')
+    if (allExpenseRecords && allExpenseRecords.values) {
+      allExpenseRecords.valueTotal = +getValuesAll(allExpenseRecords.values)
+      expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
+      saldo -= allExpenseRecords.valueTotal
+    }
   }
-  content = getLocalStorage('arrayRevenue')
-  if (content) {
-    arrayRevenue = content.slice();
-    idR = +(localStorage.getItem('idR'))
-    allRevenueRecords = getLocalStorage('allRevenueRecords')
+
+  if (contentRevenue) {
+    arrayRevenue = contentRevenue.slice()
+    idR = +localStorage.getItem('idR')
+    const allRevenueRecords = getLocalStorage('allRevenueRecords')
     if (allRevenueRecords && allRevenueRecords.values) {
       allRevenueRecords.valueTotal = +getValuesAll(allRevenueRecords.values)
       revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
       saldo += allRevenueRecords.valueTotal
     }
   }
-  balance.textContent = `R$ ${saldo}`
 }
 verificLocalStorage()
 
@@ -109,8 +114,8 @@ function clickOutsideModal(event) {
     closeModal(event)
 }
 
-btnOpen.forEach(btn => btn.addEventListener('click', openModal))
-btnClose.addEventListener('click', closeModal)
+btnOpenModal.forEach(btn => btn.addEventListener('click', openModal))
+btnCloseModal.addEventListener('click', closeModal)
 containerModal.addEventListener('click', clickOutsideModal)
 
 
@@ -118,8 +123,6 @@ function formatDate(dateInput, element) {
   const [ano, mes, dia] = dateInput.split('-');
   element.date = `${dia}/${mes}/${ano}`;
 }
-
-
 
 function checkFields() {
   let verific = false
@@ -203,9 +206,8 @@ function clear() {
 
 function createTable() {
   let fullArray = arrayExpenditure.concat(arrayRevenue)
-
   fullArray.forEach(item => {
-    const { description, value, category, dateInput, date, id, type } = item;
+    const { description, value, category, date, id, type } = item;
     let props = [type, description, value, category, date]
     insertRow(props, id)
   })
@@ -214,7 +216,7 @@ function createTable() {
 createTable()
 
 function createTr(obj) {
-  const { description, value, category, dateInput, date, id, type } = obj;
+  const { description, value, category, date, id, type } = obj;
   let props = [type, description, value, category, date]
   insertRow(props, id)
 }
@@ -253,22 +255,19 @@ function insertRow(props, id) {
   })
   tr.appendChild(createActions())
   tbody.appendChild(tr)
-  trs = Array.from(document.querySelectorAll('tbody tr'))
   let type = document.querySelector('tbody tr td')
 
   edit = tbody.querySelectorAll('td span.edit')
   deleteSpan = tbody.querySelectorAll('td span.delete')
-  iDelete = document.querySelectorAll('span.delete i.fa-trash')
   edit.forEach(item => item.addEventListener('click', updateTd))
   deleteSpan.forEach(item => item.addEventListener('click', deleteTd))
 }
 
 function checkAccount(array, arrayString, category, value) {
-  if (array.allCategorys.includes(category.toLowerCase())) {
+  if (array.allCategorys.includes(category.toLowerCase()))
     DeleteOrSubt(array, arrayString, category, value)
-  } else {
+  else
     addAccounts(array, arrayString, category, value)
-  }
 }
 
 function checkNewAccount(array, arrayString, category, value) {
@@ -421,9 +420,6 @@ function DeleteOrSubt(array, arrayString, category, value) {
   saveLocalStorage(arrayString, array)
   updateCards()
   verificLocalStorage()
-  // if(array.categorys.length === 0){
-  //   clear()
-  // }
 }
 
 
@@ -439,8 +435,10 @@ let buttons = document.querySelectorAll('.buttons')
 buttons.forEach(item => item.addEventListener('click', updateCards))
 
 
-
 initFilter()
 initSideBar()
 handleTheme()
+menuMobile()
+
+
 

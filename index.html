@@ -3,12 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <title>Document</title>
 </head>
 
 <body id="body-pd" class="">
+  <button id="btn-mobile">Menu
+    <span id="hamburger"></span>
+  </button>
   <header class="l-navbar" id="navbar">
     <nav class="nav">
       <div>
@@ -16,8 +20,8 @@
           <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
           <a href="#" class="nav__logo">Primo Dev</a>
         </div>
-        <div class="nav__list">
-          <a href="#" class="nav__link1" data-modal="abrir">
+        <ul class="nav__list">
+          <a href="#" class="nav__link1 first__item" data-modal="open">
             <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
             <span class="nav__name">Adicionar</span>
           </a>
@@ -40,7 +44,7 @@
             <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
             <span class="nav__name">Configurações</span>
           </a>
-        </div>
+        </ul>
       </div>
       <a href="#" class="nav__link">
         <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
@@ -50,11 +54,12 @@
   </header>
   <main id="dashboard" class="section">
     <div class="title">
-      <h1>Dashboard</h1>
       <div id="btn" class="buttons">
         <div class="inner-btn">
         </div>
       </div>
+      <h1>Dashboard</h1>
+
     </div>
     <section class="section-cards">
       <div class="card">
@@ -84,13 +89,10 @@
           <span><i class="fa-solid fa-building-columns fa-2xl"></i></span>
         </div>
       </div>
-      <div class="card" id="addItem" data-modal="abrir">
+      <div class="card" id="addItem" data-modal="open">
         <div class="content-card">
           <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
           <h2 class="card-value" id="balance">Adicionar</h2>
-        </div>
-        <div class="icon">
-          <!-- <span><i class="fa-solid fa-building-columns fa-2xl"></i></span> -->
         </div>
       </div>
     </section>
@@ -101,6 +103,7 @@
         </div>
         <div class="chart">
           <canvas id="linechart"></canvas>
+
         </div>
       </div>
       <div class="chart-line">
@@ -142,19 +145,19 @@
 
   <section class="modal-container" data-modal="container">
     <div class="modal">
-      <button data-modal="fechar" class="fechar">X</button>
+      <button data-modal="close" class="fechar">X</button>
       <ul id="typeInput">
         <li class="gain">Ganho</li>
         <li class="expenditure">Despesa</li>
       </ul>
       <label for="descripttion">Digite a descrição: </label>
-      <input type="text" autocomplete="off" id="description" class="inputs">
+      <input type="text" id="description" autocomplete="off" class="inputs">
       <label for="value">Informe o valor: </label>
       <input type="number" id="value" autocomplete="off" placeholder="" class="inputs">
       <label for="category">Digite a categoria: </label>
-      <input type="text" autocomplete="off" id="category" class="inputs">
+      <input type="text" id="category" autocomplete="off" class="inputs">
       <label for="date">Informe a data:</label>
-      <input type="date" autocomplete="off" id="date" class="inputs">
+      <input type="date" id="date" class="inputs">
       <h3 class="alert"></h3>
       <button id="btnConfirm" class="buttons">Confirmar</button>
       <button id="btnUpdate" class="buttons">Atualizar</button>
@@ -164,9 +167,9 @@
 
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="module" src="./js/chart1.js"></script>
-  <script type="module" src="./js/chart2.js"></script>
-  <script type="module" src="./js/chart3.js"></script>
+  <script type="module" src="./js/charts/chart1.js"></script>
+  <script type="module" src="./js/charts/chart2.js"></script>
+  <script type="module" src="./js/charts/chart3.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
   <script src="https://kit.fontawesome.com/bcfe146bbd.js" crossorigin="anonymous"></script>
 </body>

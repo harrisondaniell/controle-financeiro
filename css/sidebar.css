@@ -95,6 +95,7 @@ a {
   margin-top: 0;
 }
 
+
 header.expander .nav__link1 {
   background: none;
   color: #fff;
@@ -156,5 +157,9 @@ header.expander .nav__link1 {
 @media (max-width: 767px) {
   #navbar {
     display: none;
+  }
+
+  #navbar.active {
+    display: flex;
   }
 }
