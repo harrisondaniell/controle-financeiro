@@ -151,6 +151,11 @@ header.expander .nav__link1 {
   transform: rotate(180deg);
 }
 
+body.active #newheader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
 
 @media (max-width: 767px) {
   #navbar {

@@ -1,6 +1,5 @@
 section.table {
   width: 90vw;
-  /* height: 80vh; */
   min-height: 84vh;
   background-color: #fff5;
   backdrop-filter: blur(7px);
@@ -8,6 +7,8 @@ section.table {
   border-radius: .8rem;
   overflow: hidden;
   margin: 0 auto;
+  position: relative;
+  z-index: -20;
 }
 
 

@@ -70,7 +70,7 @@ const verificLocalStorage = () => {
       allExpenseRecords.valueTotal = +getValuesAll(allExpenseRecords.values)
       expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
       saldo -= allExpenseRecords.valueTotal
-    } 
+    }
   }
 
   if (contentRevenue) {
@@ -436,9 +436,6 @@ function updateCards() {
   revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
   saldo += allRevenueRecords.valueTotal
   balance.forEach(item => item.innerText = `R$ ${saldo}`)
-  console.log('saldo', saldo)
-  console.log('receita', allRevenueRecords.valueTotal)
-  console.log('despesa', allExpenseRecords.valueTotal)
 }
 
 
@@ -448,11 +445,10 @@ handleTheme()
 menuMobile()
 
 
-document.body.addEventListener('keydown', (event) => {
-  if (event.key == 'Enter') {
-    updateCards()
-  }
-})
+
+
+
+
 
 
 

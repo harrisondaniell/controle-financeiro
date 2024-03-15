@@ -7,4 +7,12 @@ export function menuMobile() {
     document.body.classList.toggle('active')
   }
   btnMobile.addEventListener('click', toggleMenu)
+
+  function clickOutsideMenu(event) {
+    const newheader = document.getElementById('newheader')
+    if (event.target == newheader) {
+      btnMobile.click()
+    }
+  }
+  document.body.addEventListener('click', clickOutsideMenu)
 }

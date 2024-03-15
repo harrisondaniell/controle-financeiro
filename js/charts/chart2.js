@@ -24,7 +24,7 @@ function att() {
   if (JSON.parse(localStorage.getItem('allExpenseRecords'))) {
     transitor = JSON.parse(localStorage.getItem(('allExpenseRecords')))
     labelsX = transitor.allCategorys
-    if (!transitor.values) {
+    if (transitor.values) {
       valores = transitor.values
     } else {
       valores = [25, 25, 25, 25]

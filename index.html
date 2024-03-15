@@ -26,45 +26,47 @@
       </label>
     </div>
   </div>
-  <header class="l-navbar" id="navbar">
-    <nav class="nav">
-      <div>
-        <div class="nav__brand">
-          <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-          <a href="#" class="nav__logo">Primo Dev</a>
+  <div id="newheader">
+    <header class="l-navbar" id="navbar">
+      <nav class="nav">
+        <div>
+          <div class="nav__brand">
+            <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+            <a href="#" class="nav__logo">Primo Dev</a>
+          </div>
+          <ul class="nav__list">
+            <a href="#" class="nav__link1 first__item" data-modal="open">
+              <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
+              <span class="nav__name">Adicionar</span>
+            </a>
+
+            <a href="#" class="nav__link activeSide">
+              <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Dashboard</span>
+            </a>
+            <a href="#table" class="nav__link">
+              <i class="fa-solid fa-table fa-lg" class="nav__icon"></i>
+              <span class="nav__name">Tabela</span>
+            </a>
+
+            <a href="#" class="nav__link">
+              <i class="fa-solid fa-chart-simple fa-xl nav_icon"></i>
+
+              <span class="nav__name">Análises</span>
+            </a>
+            <a href="#" class="nav__link">
+              <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Configurações</span>
+            </a>
+          </ul>
         </div>
-        <ul class="nav__list">
-          <a href="#" class="nav__link1 first__item" data-modal="open">
-            <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
-            <span class="nav__name">Adicionar</span>
-          </a>
-
-          <a href="#" class="nav__link activeSide">
-            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
-            <span class="nav__name">Dashboard</span>
-          </a>
-          <a href="#table" class="nav__link">
-            <i class="fa-solid fa-table fa-lg" class="nav__icon"></i>
-            <span class="nav__name">Tabela</span>
-          </a>
-
-          <a href="#" class="nav__link">
-            <i class="fa-solid fa-chart-simple fa-xl nav_icon"></i>
-
-            <span class="nav__name">Análises</span>
-          </a>
-          <a href="#" class="nav__link">
-            <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
-            <span class="nav__name">Configurações</span>
-          </a>
-        </ul>
-      </div>
-      <a href="#" class="nav__link">
-        <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-        <span class="nav__name">Login</span>
-      </a>
-    </nav>
-  </header>
+        <a href="#" class="nav__link">
+          <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+          <span class="nav__name">Login</span>
+        </a>
+      </nav>
+    </header>
+  </div>
   <main id="dashboard" class="section">
     <div class="top__pc">
       <h1>Dashboard</h1>
