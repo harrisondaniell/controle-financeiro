@@ -17,7 +17,6 @@ const [description, value, category, date] = inputs;
 const alert = document.querySelector('.alert')
 const expenditure = document.getElementById('expenditure')
 const revenue = document.getElementById('revenue')
-const balance = document.getElementById('balance')
 const liInput = document.querySelectorAll('#typeInput li');
 
 const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
@@ -58,6 +57,7 @@ const addEventLi = () => liInput.forEach(item => item.addEventListener('click', 
 addEventLi()
 
 const verificLocalStorage = () => {
+  const balance = document.querySelectorAll('.balance')
   const contentExpenditure = getLocalStorage('arrayExpenditure')
   const contentRevenue = getLocalStorage('arrayRevenue')
   let saldo = 0
@@ -65,24 +65,25 @@ const verificLocalStorage = () => {
   if (contentExpenditure) {
     arrayExpenditure = contentExpenditure.slice()
     id = +localStorage.getItem('id')
-    const allExpenseRecords = getLocalStorage('allExpenseRecords')
+    allExpenseRecords = getLocalStorage('allExpenseRecords')
     if (allExpenseRecords && allExpenseRecords.values) {
       allExpenseRecords.valueTotal = +getValuesAll(allExpenseRecords.values)
       expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
       saldo -= allExpenseRecords.valueTotal
-    }
+    } 
   }
 
   if (contentRevenue) {
     arrayRevenue = contentRevenue.slice()
     idR = +localStorage.getItem('idR')
-    const allRevenueRecords = getLocalStorage('allRevenueRecords')
+    allRevenueRecords = getLocalStorage('allRevenueRecords')
     if (allRevenueRecords && allRevenueRecords.values) {
       allRevenueRecords.valueTotal = +getValuesAll(allRevenueRecords.values)
       revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
       saldo += allRevenueRecords.valueTotal
     }
   }
+  balance.forEach(item => item.textContent = `R$ ${saldo}`)
 }
 verificLocalStorage()
 
@@ -166,6 +167,7 @@ function addItemExpenditure() {
   saveLocalStorage('arrayExpenditure', arrayExpenditure)
   saveLocalStorage('id', id)
   inputs.forEach(item => item.value = '');
+  updateCards()
   return newItem
 }
 
@@ -181,6 +183,7 @@ function addItemRevenue() {
   saveLocalStorage('arrayRevenue', arrayRevenue)
   saveLocalStorage('idR', idR)
   inputs.forEach(item => item.value = '');
+  updateCards()
   return newItem
 }
 
@@ -358,7 +361,6 @@ btnUpdate.addEventListener('click', () => {
     updateData(arrayExpenditure, 'arrayExpenditure', allExpenseRecords, 'allExpenseRecords')
   else
     updateData(arrayRevenue, 'arrayRevenue', allRevenueRecords, 'allRevenueRecords')
-
 })
 
 function deleteTd(event) {
@@ -402,6 +404,9 @@ btnDelete.addEventListener('click', () => {
     arrayRevenue.splice(targetPosition, 1)
     saveLocalStorage('arrayRevenue', arrayRevenue)
   }
+  setTimeout(() => {
+    updateCards()
+  }, 200);
 })
 
 function DeleteOrSubt(array, arrayString, category, value) {
@@ -418,27 +423,36 @@ function DeleteOrSubt(array, arrayString, category, value) {
     allExpenseRecords
   }
   saveLocalStorage(arrayString, array)
-  updateCards()
-  verificLocalStorage()
 }
 
 
 function updateCards() {
+  const balance = document.querySelectorAll('h2.balance')
   let saldo = 0;
-  expenditure.textContent = `R$ ${allExpenseRecords.valueTotal}`
+  allExpenseRecords.valueTotal = getValuesAll(allExpenseRecords.values)
+  expenditure.innerText = `R$ ${allExpenseRecords.valueTotal}`
   saldo -= allExpenseRecords.valueTotal
+  allRevenueRecords.valueTotal = getValuesAll(allRevenueRecords.values)
   revenue.innerText = `R$ ${allRevenueRecords.valueTotal}`
   saldo += allRevenueRecords.valueTotal
-  balance.textContent = `R$ ${saldo}`
+  balance.forEach(item => item.innerText = `R$ ${saldo}`)
+  console.log('saldo', saldo)
+  console.log('receita', allRevenueRecords.valueTotal)
+  console.log('despesa', allExpenseRecords.valueTotal)
 }
-let buttons = document.querySelectorAll('.buttons')
-buttons.forEach(item => item.addEventListener('click', updateCards))
 
 
 initFilter()
 initSideBar()
 handleTheme()
 menuMobile()
+
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key == 'Enter') {
+    updateCards()
+  }
+})
 
 
 

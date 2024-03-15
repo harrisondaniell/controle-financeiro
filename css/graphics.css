@@ -24,14 +24,19 @@
   border-radius: 1rem;
 }
 
-
 @media (max-width: 767px) {
   .container-chart {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .chart-line {
     height: 200px;
+    width: 380px;
+  }
+
+  .doughnut-chart,
+  .linechart {
+    max-width: 360px;
   }
 }

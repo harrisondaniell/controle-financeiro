@@ -26,7 +26,6 @@
       </label>
     </div>
   </div>
-
   <header class="l-navbar" id="navbar">
     <nav class="nav">
       <div>
@@ -67,7 +66,6 @@
     </nav>
   </header>
   <main id="dashboard" class="section">
-
     <div class="top__pc">
       <h1>Dashboard</h1>
       <div class="btnDark ">
@@ -78,10 +76,10 @@
           <span class="ball"></span>
         </label>
       </div>
-
     </div>
-
     </div>
+    <h2 class="balance balance__mobile" id="saldo">R$ 0,00</h2>
+
     <section class="section-cards">
       <div class="card">
         <div class="content-card">
@@ -101,30 +99,23 @@
           <span><i class="fa-solid fa-arrow-down fa-2xl"></i></span>
         </div>
       </div>
-      <div class="card">
+      <div class="card" id="not__mobile">
         <div class="content-card">
           <p>Saldo</p>
-          <h2 class="card-value" id="balance">R$ 0,00</h2>
+          <h2 class="card-value balance">R$ 0,00</h2>
         </div>
         <div class="icon">
           <span><i class="fa-solid fa-building-columns fa-2xl"></i></span>
         </div>
       </div>
-      <div class="card" id="addItem" data-modal="open">
-        <div class="content-card">
-          <i class="fa-solid fa-plus fa-xl" class="nav__icon"></i>
-          <h2 class="card-value" id="balance">Adicionar</h2>
-        </div>
-      </div>
     </section>
     <section>
       <div class="container-chart">
-        <div class="chart">
+        <div class="chart doughnut-chart">
           <canvas id="doughnut-chart"></canvas>
         </div>
-        <div class="chart">
+        <div class="chart linechart">
           <canvas id="linechart"></canvas>
-
         </div>
       </div>
       <div class="chart-line">
@@ -185,6 +176,7 @@
       <button id="btnDelete" class="buttons">Apagar</button>
     </div>
   </section>
+
 
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>

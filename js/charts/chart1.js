@@ -17,7 +17,7 @@ let rgba1 = [
   '#d6496c']
 
 let rgba2
-let labelsX = [];
+let labelsX = ['valo1', 'valor2', 'valor3', 'valor4'];
 let valores = [25, 25, 25, 25];
 
 function att() {
@@ -30,7 +30,6 @@ function att() {
 }
 
 att();
-
 
 const data = {
   labels: labelsX,

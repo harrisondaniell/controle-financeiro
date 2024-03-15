@@ -24,7 +24,11 @@ function att() {
   if (JSON.parse(localStorage.getItem('allExpenseRecords'))) {
     transitor = JSON.parse(localStorage.getItem(('allExpenseRecords')))
     labelsX = transitor.allCategorys
-    valores = transitor.values
+    if (!transitor.values) {
+      valores = transitor.values
+    } else {
+      valores = [25, 25, 25, 25]
+    }
   }
   rgba2 = document.body.classList.contains('dark') ? rgba : rgba1;
 }
