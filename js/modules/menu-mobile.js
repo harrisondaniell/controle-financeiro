@@ -14,5 +14,7 @@ export function menuMobile() {
       btnMobile.click()
     }
   }
-  document.body.addEventListener('click', clickOutsideMenu)
+  let events = ['click', 'touchstart']
+  events.forEach(item => document.body.addEventListener(item, clickOutsideMenu))
+
 }

@@ -197,8 +197,8 @@ btnConfirm.addEventListener('click', () => {
   }
 })
 
-const del = document.getElementById('delete')
-del.addEventListener('click', clear)
+// const del = document.getElementById('delete')
+// del.addEventListener('click', clear)
 
 function clear() {
   localStorage.clear();
@@ -443,10 +443,6 @@ initFilter()
 initSideBar()
 handleTheme()
 menuMobile()
-
-
-
-
 
 
 

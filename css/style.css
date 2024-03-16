@@ -22,6 +22,7 @@ h1 {
 
 .balance__mobile {
   display: none;
+  color: black;
 }
 
 
@@ -95,10 +96,6 @@ section .card:nth-of-type(2) .icon {
   color: #fff;
 }
 
-#addItem {
-  display: none;
-}
-
 .buttons {
   display: flex;
   flex-direction: row;
@@ -160,11 +157,7 @@ section .card:nth-of-type(2) .icon {
     margin-top: 50px;
   }
 
-  #addItem {
-    display: flex;
-  }
-
-  .balance__mobile {
+  body.dark .balance__mobile {
     color: white;
   }
 
@@ -175,7 +168,7 @@ section .card:nth-of-type(2) .icon {
   }
 
   .section-cards .card {
-    width: 11rem;
+    width: 12rem;
     height: 90px;
     border-radius: 20px;
     background: var(--bg-cards);
@@ -188,12 +181,11 @@ section .card:nth-of-type(2) .icon {
     font-size: 10px;
   }
 
-  #addItem .content-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+  .content-card {
+    font-size: 13px;
+  }
+
+  .card-value {
+    font-size: 16px;
   }
 }
-

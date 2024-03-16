@@ -9,10 +9,10 @@ let rgba = [
   'rgba(259,159, 64, 0.2)']
 
 let rgba1 = [
-  '#80b3ff',
   '#ffd41f',
   'rgba(75,192, 192, 1)',
   'rgba(153,102, 255, 1)',
+  '#80b3ff',
   '#d6496c']
 
 let rgba2;
@@ -51,13 +51,16 @@ let teste = {
   data: data,
 }
 
-const buttons = document.querySelectorAll('.buttons');
+const buttons = document.querySelectorAll('.buttons, .btnDark');
+
 let doughnut = new Chart(ctx1, teste);
 buttons.forEach(item => item.addEventListener('click', () => {
   att()
   doughnut.data.labels = labelsX;
   doughnut.data.datasets[0].data = valores;
+  rgba2 = document.body.classList.contains('dark') ? rgba1 : rgba;
   doughnut.data.datasets[0].backgroundColor = rgba2;
   doughnut.update();
 })
 )
+

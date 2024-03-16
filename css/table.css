@@ -1,5 +1,5 @@
 section.table {
-  width: 90vw;
+  width: 80vw;
   min-height: 84vh;
   background-color: #fff5;
   backdrop-filter: blur(7px);
@@ -8,7 +8,13 @@ section.table {
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  z-index: -20;
+  z-index: 1;
+  margin-bottom: 100px;
+
+}
+
+body.active section.table {
+  z-index: -1;
 }
 
 
@@ -162,5 +168,11 @@ tbody tr td.expenditure::before {
 @media (max-width: 1000px) {
   td:not(:first-of-type) {
     min-width: 12.1rem;
+  }
+
+  section.table {
+    margin-top: 200px;
+    margin-bottom: 50px;
+    width: 95vw;
   }
 }

@@ -138,18 +138,22 @@
 
 @media (max-width: 767px) {
   .modal-container {
-    /* width: 100px; */
-    /* height: 100px; */
     width: 100vw;
   }
 
   .modal {
     min-width: 200px;
+    width: 80vw;
     gap: 0;
   }
 
-  .modal input{
-    width: 70vw;
+  .modal input {
+    width: 50vw;
     height: 3.5vh;
+  }
+
+  #typeInput li {
+    padding: 10px 20px;
+
   }
 }

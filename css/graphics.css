@@ -4,6 +4,16 @@
   gap: 100px;
 }
 
+.control__chart {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.dark .control__chart {
+  color: white;
+}
+
 .chart {
   display: flex;
   align-items: center;
@@ -31,12 +41,22 @@
   }
 
   .chart-line {
-    height: 200px;
-    width: 380px;
+    display: none;
+    /* height: 200px;
+    width: 380px; */
   }
 
   .doughnut-chart,
   .linechart {
     max-width: 360px;
   }
+
+  .control__chart {
+    padding-bottom: 10vh;
+  }
+
+  .control__chart:first-of-type {
+    margin-top: 50px;
+  }
+
 }

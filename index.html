@@ -113,11 +113,17 @@
     </section>
     <section>
       <div class="container-chart">
-        <div class="chart doughnut-chart">
-          <canvas id="doughnut-chart"></canvas>
+        <div class="control__chart">
+          <h2>Despesas por categoria:</h2>
+          <div class="chart doughnut-chart">
+            <canvas id="doughnut-chart"></canvas>
+          </div>
         </div>
-        <div class="chart linechart">
-          <canvas id="linechart"></canvas>
+        <div class="control__chart">
+          <h2>Receitas por categoria:</h2>
+          <div class="chart linechart">
+            <canvas id="linechart"></canvas>
+          </div>
         </div>
       </div>
       <div class="chart-line">
@@ -130,7 +136,7 @@
     <section class="table-header">
       <h1>Tabela Completa</h1>
       <div class="input-itens">
-        <input type="search" placeholder="Procurar registro...">
+        <input type="search" placeholder="Procurar...">
         <span> <i class="fa-solid fa-magnifying-glass"></i></span>
         <span></span>
       </div>
@@ -153,9 +159,8 @@
     </section>
   </section>
 
-  <div class="buttons">
-    <button id="delete">Apagar tudo</button>
-  </div>
+  <!-- <button id="delete">Apagar tudo</button> -->
+
 
   <section class="modal-container" data-modal="container">
     <div class="modal">
@@ -167,7 +172,7 @@
       <label for="descripttion">Digite a descrição: </label>
       <input type="text" id="description" autocomplete="off" class="inputs">
       <label for="value">Informe o valor: </label>
-      <input type="number" id="value" autocomplete="off" placeholder="" class="inputs">
+      <input type="number" id="value" placeholder="" class="inputs">
       <label for="category">Digite a categoria: </label>
       <input type="text" id="category" autocomplete="off" class="inputs">
       <label for="date">Informe a data:</label>
