@@ -147,7 +147,8 @@ tbody tr.hide td span {
 }
 
 
-tbody tr td.gain::before {
+tbody tr td.gain::before,
+tbody tr td.expenditure::before {
   content: '';
   display: inline-block;
   height: 0.5rem;
@@ -156,10 +157,6 @@ tbody tr td.gain::before {
 }
 
 tbody tr td.expenditure::before {
-  content: '';
-  display: inline-block;
-  height: 0.5rem;
-  width: 6rem;
   background-color: red;
 }
 
@@ -167,12 +164,22 @@ tbody tr td.expenditure::before {
 
 @media (max-width: 1000px) {
   td:not(:first-of-type) {
-    min-width: 12.1rem;
+    min-width: 9.1rem;
   }
 
   section.table {
     margin-top: 200px;
     margin-bottom: 50px;
     width: 95vw;
+  }
+
+  tbody tr td.gain::before,
+  tbody tr td.expenditure::before {
+    width: 3rem;
+  }
+
+  td,
+  th {
+    padding: .9rem;
   }
 }

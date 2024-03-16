@@ -164,11 +164,12 @@ section .card:nth-of-type(2) .icon {
   .section-cards {
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100vw;
     gap: 12px;
   }
 
   .section-cards .card {
-    width: 12rem;
+    width: 45vw;
     height: 90px;
     border-radius: 20px;
     background: var(--bg-cards);

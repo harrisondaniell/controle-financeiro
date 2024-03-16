@@ -135,6 +135,11 @@
   color: #fff;
 }
 
+.alert.revenue,
+.alert.expenditure {
+  color: #031634;
+}
+
 
 @media (max-width: 767px) {
   .modal-container {

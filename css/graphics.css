@@ -17,8 +17,9 @@ body.dark .control__chart {
 .chart {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 400px;
-  height: 400px;
+  height: 340px;
   padding: 2rem;
   border-radius: 1rem;
   background: var(--bg-chart);

@@ -22,7 +22,17 @@ const liInput = document.querySelectorAll('#typeInput li');
 const getValuesAll = values => values.reduce((acc, value) => acc + value, 0)
 const getLocalStorage = key => JSON.parse(localStorage.getItem(key));
 const saveLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value))
-const alertText = text => alert.innerText = text
+const alertText = (text, className) => {
+  alert.classList.add(className)
+  alert.innerText = text;
+  if (className) {
+    setTimeout(() => {
+      alert.textContent = ''
+      alert.classList.remove(className)
+      liInput.forEach(item => item.classList.remove('selected'))
+    }, 2000);
+  }
+}
 
 let arrayExpenditure = [];
 let arrayRevenue = [];
@@ -98,7 +108,7 @@ function openModal(event, className) {
 }
 
 function closeModal(event) {
-  event.preventDefault();
+  // event.preventDefault();
   containerModal.classList.remove('active')
   modal.classList.remove('update', 'delete')
   alertText('')
@@ -137,6 +147,11 @@ function checkFields() {
     alertText('Selecione o tipo do registro.')
     return false
   }
+  if (isNaN(+(value.value))) {
+    alertText('Digite um número válido')
+    return false
+  }
+
   for (let i = 0; i < inputs.length; i++) {
     if (!!inputs[i].value == false) {
       alertText('Preencha todos os campos')
@@ -168,6 +183,7 @@ function addItemExpenditure() {
   saveLocalStorage('id', id)
   inputs.forEach(item => item.value = '');
   updateCards()
+  alertText('Despesa registrada com sucesso', 'expenditure')
   return newItem
 }
 
@@ -184,6 +200,7 @@ function addItemRevenue() {
   saveLocalStorage('idR', idR)
   inputs.forEach(item => item.value = '');
   updateCards()
+  alertText('Receita registrada com sucesso', 'revenue')
   return newItem
 }
 
@@ -404,9 +421,13 @@ btnDelete.addEventListener('click', () => {
     arrayRevenue.splice(targetPosition, 1)
     saveLocalStorage('arrayRevenue', arrayRevenue)
   }
+  alertText('Registro deletado', 'revenue')
   setTimeout(() => {
     updateCards()
   }, 200);
+  setTimeout(() => {
+    closeModal()
+  }, 1000);
 })
 
 function DeleteOrSubt(array, arrayString, category, value) {
