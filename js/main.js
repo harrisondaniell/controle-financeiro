@@ -363,7 +363,7 @@ function updateData(array, arrayString, subArray, subArrayString) {
   array[i].category = category.value;
   array[i].dateInput = date.value;
   formatDate(array[i].dateInput, array[i]);
-  inputs.forEach(item => item.value = '')
+  // inputs.forEach(item => item.value = '')
   saveLocalStorage(arrayString, array)
   checkAccount(subArray, subArrayString, categoryA, valueA)
   checkAccount(subArray, subArrayString, array[i].category, array[i].value)
@@ -371,6 +371,7 @@ function updateData(array, arrayString, subArray, subArrayString) {
   tr.forEach(item => item.remove())
   updateCards()
   createTable()
+  alertText('Registro atualizado', 'revenue')
 }
 
 btnUpdate.addEventListener('click', () => {
